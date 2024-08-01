@@ -14,6 +14,7 @@ from finbert_utils import estimate_sentiment
 API_KEY = "PKOSQF8TVSWUHLAHLZ57"    #humushtaq77@gmail.com    # password: @NotShared123
 API_SECRET = "4otKG7eGyYpVP49nBqo316ge3J2YbFj4ONQ52MoS" 
 BASE_URL = "https://paper-api.alpaca.markets"
+
 ALPACA_CREDS = {
     "API_KEY":API_KEY, 
     "API_SECRET": API_SECRET, 
@@ -53,7 +54,7 @@ class MLTrader(Strategy):
         probability, sentiment = self.get_sentiment()
 
         if cash > last_price: 
-            if sentiment == "positive" and probability > .999: 
+            if sentiment == "positive" and probability > .9: 
                 if self.last_trade == "sell": 
                     self.sell_all() 
                 order = self.create_order(
@@ -66,7 +67,7 @@ class MLTrader(Strategy):
                 )
                 self.submit_order(order) 
                 self.last_trade = "buy"
-            elif sentiment == "negative" and probability > .999: 
+            elif sentiment == "negative" and probability > .9: 
                 if self.last_trade == "buy": 
                     self.sell_all() 
                 order = self.create_order(
@@ -84,13 +85,13 @@ start_date = datetime(2020,1,1)
 end_date = datetime(2023,12,31) 
 broker = Alpaca(ALPACA_CREDS) 
 strategy = MLTrader(name='mlstrat', broker=broker, 
-                    parameters={"symbol":"NVDA", 
+                    parameters={"symbol":"SPY", 
                                 "cash_at_risk":.5})
 strategy.backtest(
     YahooDataBacktesting, 
     start_date, 
     end_date, 
-    parameters={"symbol":"NVDA", "cash_at_risk":.5}
+    parameters={"symbol":"SPY", "cash_at_risk":.2}
 )
 # trader = Trader()
 # trader.add_strategy(strategy)

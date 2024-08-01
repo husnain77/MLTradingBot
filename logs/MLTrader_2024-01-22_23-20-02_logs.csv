@@ -1,0 +1,47 @@
+2024-01-22 23:20:02,449: root: INFO: MLTrader : Executing the initialize lifecycle method
+2024-01-22 23:20:02,510: alpaca.trading.stream: INFO: connected to: BaseURL.TRADING_STREAM_PAPER
+2024-01-22 23:20:03,385: root: INFO: Current backtesting datetime 2020-01-02 08:30:00-05:00
+2024-01-22 23:20:03,386: root: INFO: MLTrader : Executing the before_market_opens lifecycle method
+2024-01-22 23:20:03,387: root: INFO: Current backtesting datetime 2020-01-02 09:30:00-05:00
+2024-01-22 23:20:03,387: root: INFO: MLTrader : Executing the before_starting_trading lifecycle method
+2024-01-22 23:20:03,388: root: INFO: [34mMLTrader : Executing the on_trading_iteration lifecycle method at 2024-01-22 23:20:03[0m
+2024-01-22 23:20:03,388: root: WARNING: quote is not implemented for YahooData, but USD was passed as the quote
+2024-01-22 23:20:03,620: yfinance: ERROR: Failed to get ticker 'NVDA' reason: HTTPSConnectionPool(host='fc.yahoo.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000191A8253C50>: Failed to establish a new connection: [Errno 11004] getaddrinfo failed'))
+2024-01-22 23:20:03,621: yfinance: ERROR: NVDA: No timezone found, symbol may be delisted
+2024-01-22 23:20:03,853: root: ERROR: YAHOO did not return data for symbol NVDA. Make sure this symbol is valid.
+2024-01-22 23:20:03,854: root: ERROR: unsupported operand type(s) for /: 'float' and 'NoneType'
+2024-01-22 23:20:03,879: root: ERROR: Traceback (most recent call last):
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 831, in run
+    self._run_trading_session()
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 782, in _run_trading_session
+    self._on_trading_iteration()
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 274, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 298, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 87, in func_output
+    return func_input(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 378, in _on_trading_iteration
+    on_trading_iteration()
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\tools\decorators.py", line 62, in func_output
+    frame, result = call_function_get_frame(func_input, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\humus\ML_Projects\env\Lib\site-packages\lumibot\tools\decorators.py", line 30, in call_function_get_frame
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\humus\ML_Projects\MLTradingBot\MLTradingBot\tradingbot.py", line 53, in on_trading_iteration
+    cash, last_price, quantity = self.position_sizing()
+                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\humus\ML_Projects\MLTradingBot\MLTradingBot\tradingbot.py", line 35, in position_sizing
+    quantity = round(cash * self.cash_at_risk / last_price,0)
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+TypeError: unsupported operand type(s) for /: 'float' and 'NoneType'
+
+2024-01-22 23:20:03,881: root: INFO: MLTrader : Executing the on_bot_crash event method
+2024-01-22 23:20:03,900: root: INFO: Backtesting finished
+2024-01-22 23:20:03,901: root: WARNING: Cannot plot returns because the strategy returns are missing
+2024-01-22 23:20:04,053: root: WARNING: Cannot create a tearsheet because the strategy returns are missing
+2024-01-22 23:20:04,053: backtest_stats: INFO: Backtest took 0:00:01.607073 for a speed of 0.000
